@@ -1,35 +1,36 @@
 import ApiConnect from './class/ApiConnect.js'
-import FetchData from './class/FetchData.js'
+import FetchNba from './class/FetchNba.js'
 import HtmlGenerator from './class/HtmlGenerator.js'
 
 document.addEventListener('DOMContentLoaded',function(){
+    
     const options = new ApiConnect
     const gameDate = document.getElementById('gameDate');
     const form = document.getElementById('form');
     
-    form.addEventListener('submit',function(e){
+    form.addEventListener('submit',async (e) => {
+        
         e.preventDefault();
         const ul = document.getElementById('gameList');
-        let gamesData = new FetchData();
-        let content = gamesData.getGames(gameDate.value,options.param);
+        const gamesData = new FetchNba();
+        const games = await gamesData.getGames(gameDate.value,options.param);
+        const htmlGenerator = new HtmlGenerator();
+        htmlGenerator.viewGame(games, ul);
         
-        console.log(gamesData.data) 
-        
-        let li = new HtmlGenerator("li",gamesData.data,gamesData.id)
-        li.createEl(ul);   
-        
-            //Stat par match
+        for (let i = 0; i < games.length; i++){
+            const gameId = games[i].id;
+            const gameSelect = document.getElementById(`${gameId}`);
             
-        let gamesStats = new FetchData();
-        let stats = gamesStats.getStats(options.param);
-        console.log(gamesStats.data)
+            gameSelect.addEventListener('click', async ()=>{
+                
+                const stats = await gamesData.getStats(options.param, gameId);
+                console.log(stats)
+                console.log(stats.map(() => game[0].statistics[0]))
+                
+                //htmlGenerator.viewStat(stats, gameSelect);
+            })
+        }
         
-        
-        
-            // let gameSelect = document.getElementById(`${li.id}`);
-            
-        //     let gameStatTable = document.createElement("table");
-        //     gameStatTable.innerHTML=
         //     	`<tbody>
         //     	<tr>
         //     		<td>${homeFg}</td>

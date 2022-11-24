@@ -1,18 +1,4 @@
 class HtmlGenerator {
-    
-    constructor(el,data,id=null){
-        this.el = el;
-        this.data = data;
-        this.id = id
-    }
-    
-    createEl(child){
-        let DomEl = document.createElement(`${this.el}`);
-        DomEl.id=`${this.id}`;
-        DomEl.innerHTML= `${this.data}`;
-        child.append(DomEl);
-    }
-    
     viewGame(games, dom){
         for (const el of games){
             //initialisation des données de chaque match
@@ -42,8 +28,43 @@ class HtmlGenerator {
             }
             
             // création des li avec chaque match de la date sélectionnée
-            dom.innerHTML += '<li><img src="' + logoA + '" width=80/>' + teamA + "   " + scoreA + " - " + scoreB + "   " + teamB + '<img src="' + logoB + '" width=80/>' + statement + '</li>';
+            dom.innerHTML += '<li id="'+el.id+'"><img src="' + logoA + '" width=80/>' + teamA + "   " + scoreA + " - " + scoreB + "   " + teamB + '<img src="' + logoB + '" width=80/>' + statement + '</li>';
             
+        }
+    }
+    
+    viewStat(game, dom){
+        for (let i = 0; i < game.length; i++){
+            
+        let homeFg = game[0].statistics[0].fgm +"/"+game[0].statistics[0].fga;
+        let homeFgP = game[0].statistics[0].fgp;
+        let homeFt = game[0].statistics[0].ftm +"/"+game[0].statistics[0].fta;
+        let homeFtP = game[0].statistics[0].ftp;
+        let homeTp = game[0].statistics[0].tpm +"/"+game[0].statistics[0].tpa;
+        let homeTpP = game[0].statistics[0].tpp;
+        let homeOffReb = game[0].statistics[0].offReb;
+        let homeDefReb = game[0].statistics[0].defReb;
+        let homeReb = game[0].statistics[0].totReb;
+        let homeAssits = game[0].statistics[0].assists;
+        let homeFouls = game[0].statistics[0].pFouls;
+        let homeSteals = game[0].statistics[0].steals;
+        let homeTurnovers = game[0].statistics[0].turnovers;
+        let homeBlocks = game[0].statistics[0].blocks;
+        
+        let visitFg = game[1].statistics[0].fgm +"/"+game[1].statistics[0].fga;
+        let visitFgP = game[1].statistics[0].fgp;
+        let visitFt = game[1].statistics[0].ftm +"/"+game[1].statistics[0].fta;
+        let visitFtP = game[1].statistics[0].ftp;
+        let visitTp = game[1].statistics[0].tpm +"/"+game[1].statistics[0].tpa;
+        let visitTpP = game[1].statistics[0].tpp;
+        let visitOffReb = game[1].statistics[0].offReb;
+        let visitDefReb = game[1].statistics[0].defReb;
+        let visitReb = game[1].statistics[0].totReb;
+        let visitAssits = game[1].statistics[0].assists;
+        let visitFouls = game[1].statistics[0].pFouls;
+        let visitSteals = game[1].statistics[0].steals;
+        let visitTurnovers = game[1].statistics[0].turnovers;
+        let visitBlocks = game[1].statistics[0].blocks;
         }
     }
 }
