@@ -1,0 +1,14 @@
+.statTeams, .score{
+    display: flex;
+    margin:20px;
+}
+.active{
+    display:block;
+}
+table{
+    display:none;
+}
+
+li:hover{
+    border:1px solid black;
+}
