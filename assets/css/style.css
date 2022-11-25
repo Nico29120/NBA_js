@@ -1,14 +1,29 @@
 .statTeams, .score{
-    display: flex;
-    margin:20px;
+    display : flex;
+    margin : 20px;
 }
 .active{
-    display:block;
+    display : block;
+    margin : auto;
 }
 table{
-    display:none;
+    display : none;
+    width:100%;
+    padding : 5 10 5 10;
 }
-
+tbody{
+    width:inherit;
+    margin:auto;
+}
+li{
+    list-style-type : none;
+}
 li:hover{
-    border:1px solid black;
+    cursor : pointer;
+}
+.gameInfo{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    width:100%;
 }
