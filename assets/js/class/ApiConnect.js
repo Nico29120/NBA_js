@@ -1,5 +1,5 @@
 class ApiConnect{
-    
+    // récupération des paramètres d'accès à l'API
     constructor(){
         this.param = {
     	    method: 'GET',
